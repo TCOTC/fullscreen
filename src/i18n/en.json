@@ -1,0 +1,7 @@
+{
+  "buttonTitle": "Fullscreen",
+  "editorFullscreen": "Editor fullscreen",
+  "editorFullscreenDesc": "Make the current document editor fill the window, same as the native editor fullscreen.",
+  "windowFullscreen": "Window fullscreen",
+  "windowFullscreenDesc": "Make the app window fullscreen via Electron. In the browser, the Page Fullscreen API is used instead."
+}

@@ -1,0 +1,29 @@
+{
+  "name": "fullscreen",
+  "author": "Jeffrey Chen",
+  "url": "https://github.com/TCOTC/fullscreen",
+  "version": "1.0.0",
+  "minAppVersion": "3.8.2-alpha.2",
+  "backends": [
+    "all"
+  ],
+  "frontends": [
+    "desktop",
+    "browser-desktop",
+    "desktop-window"
+  ],
+  "disabledInPublish": false,
+  "displayName": {
+    "default": "Breadcrumb Quick Fullscreen",
+    "zh-CN": "面包屑快捷全屏"
+  },
+  "description": {
+    "default": "Add a fullscreen button to the document breadcrumb",
+    "zh-CN": "在文档面包屑上添加全屏按钮"
+  },
+  "readme": {
+    "default": "README.md",
+    "zh-CN": "README.zh-CN.md"
+  },
+  "funding": { "custom": ["https://mytemos.com/"] }
+}
