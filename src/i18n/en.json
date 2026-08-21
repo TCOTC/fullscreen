@@ -1,7 +1,7 @@
 {
-  "buttonTitle": "Fullscreen",
+  "buttonTitle": "Toggle fullscreen",
   "editorFullscreen": "Editor fullscreen",
-  "editorFullscreenDesc": "Make the current document editor fill the window, same as the native editor fullscreen.",
+  "editorFullscreenDesc": "Make the current document editor fill the window, same as SiYuan's native editor fullscreen",
   "windowFullscreen": "Window fullscreen",
-  "windowFullscreenDesc": "Make the app window fullscreen via Electron. In the browser, the Page Fullscreen API is used instead."
+  "windowFullscreenDesc": "On desktop, fullscreen the app window via the Electron API<br>In the browser, use the Page Fullscreen API"
 }

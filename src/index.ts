@@ -2,18 +2,20 @@ import {
     Plugin,
     Setting,
     showMessage,
-    type IProtyle,
 } from "siyuan";
 import {
-    isConfiguredFullscreen,
-    isEditorFullscreen,
     toggleConfiguredFullscreen,
     type FullscreenConfig,
 } from "./fullscreen";
 import type zhCN from "./i18n/zh-CN.json";
+import "./index.scss";
 
 const STORAGE_NAME = "config.json";
 const BUTTON_ID = "fullscreen";
+const ATTR_EDITOR = "data-jcfs-editor"; // :root 上标记「编辑器全屏」开关已开
+const ATTR_WINDOW = "data-jcfs-window"; // :root 上标记「窗口全屏」开关已开
+const BUTTON_ICON =
+    '<svg class="jcfs-enter"><use xlink:href="#iconFullscreen"></use></svg><svg class="jcfs-exit"><use xlink:href="#iconFullscreenExit"></use></svg>';
 
 const DEFAULT_CONFIG: FullscreenConfig = {
     editorFullscreen: true,
@@ -65,7 +67,6 @@ export default class FullscreenPlugin extends Plugin {
 
         this.initSetting();
         this.syncBreadcrumbButton();
-        this.eventBus.on("switch-protyle", this.onSwitchProtyle);
 
         console.log(this.displayName, "plugin loaded");
     }
@@ -76,8 +77,8 @@ export default class FullscreenPlugin extends Plugin {
     }
 
     onunload() {
-        this.eventBus.off("switch-protyle", this.onSwitchProtyle);
-        this.removeFullscreenButton();
+        this.clearConfigAttrs();
+        this.removeBreadcrumbButton(BUTTON_ID);
         console.log(this.displayName, "plugin unloaded");
     }
 
@@ -99,7 +100,7 @@ export default class FullscreenPlugin extends Plugin {
 
         this.setting = new Setting({
             height: "auto",
-            width: "520px",
+            width: "595px",
             confirmCallback: () => {
                 this.config = {
                     editorFullscreen: editorSwitch.checked,
@@ -140,38 +141,31 @@ export default class FullscreenPlugin extends Plugin {
         return this.config.editorFullscreen || this.config.windowFullscreen;
     }
 
-    private getButtonIcon(protyle?: IProtyle) {
-        if (!this.hasEnabledAction()) {
-            return "iconFullscreen";
-        }
-        const editorIsFS = protyle ?
-            isEditorFullscreen(protyle) :
-            !!document.querySelector(".protyle.fullscreen");
-        return isConfiguredFullscreen(editorIsFS, this.config) ? "iconFullscreenExit" : "iconFullscreen";
+    private applyConfigAttrs() {
+        document.documentElement.toggleAttribute(ATTR_EDITOR, this.config.editorFullscreen);
+        document.documentElement.toggleAttribute(ATTR_WINDOW, this.config.windowFullscreen);
     }
 
-    private onSwitchProtyle = (event: CustomEvent) => {
-        this.syncBreadcrumbButton(event.detail.protyle);
-    };
+    private clearConfigAttrs() {
+        document.documentElement.removeAttribute(ATTR_EDITOR);
+        document.documentElement.removeAttribute(ATTR_WINDOW);
+    }
 
-    private syncBreadcrumbButton = (protyle?: IProtyle) => {
+    private syncBreadcrumbButton() {
         if (!this.hasEnabledAction()) {
-            this.removeFullscreenButton();
+            this.clearConfigAttrs();
+            this.removeBreadcrumbButton(BUTTON_ID);
             return;
         }
 
+        this.applyConfigAttrs();
         this.addBreadcrumbButton({
             id: BUTTON_ID,
-            icon: this.getButtonIcon(protyle),
+            icon: BUTTON_ICON,
             title: this.i18n.buttonTitle,
-            callback: (_event, currentProtyle) => {
-                toggleConfiguredFullscreen(currentProtyle, this.config);
-                this.syncBreadcrumbButton(currentProtyle);
+            callback: (_event, protyle) => {
+                toggleConfiguredFullscreen(protyle, this.config);
             },
         });
-    };
-
-    private removeFullscreenButton() {
-        this.removeBreadcrumbButton(BUTTON_ID);
     }
 }
