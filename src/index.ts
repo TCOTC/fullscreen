@@ -1,4 +1,5 @@
 import {
+    getActiveEditor,
     Plugin,
     Setting,
     showMessage,
@@ -66,14 +67,16 @@ export default class FullscreenPlugin extends Plugin {
         }
 
         this.initSetting();
+        this.addCommand({
+            langKey: "toggleCurrentEditorFullscreen",
+            hotkey: "",
+            callback: () => {
+                this.toggleActiveEditorFullscreen();
+            },
+        });
         this.syncBreadcrumbButton();
 
         console.log(this.displayName, "plugin loaded");
-    }
-
-    onLayoutReady() {
-        this.syncBreadcrumbButton();
-        console.log(this.displayName, "plugin layout ready");
     }
 
     onunload() {
@@ -135,6 +138,14 @@ export default class FullscreenPlugin extends Plugin {
                 return windowSwitch;
             },
         });
+    }
+
+    private toggleActiveEditorFullscreen() {
+        const editor = getActiveEditor(false);
+        if (!editor) {
+            return;
+        }
+        toggleConfiguredFullscreen(editor.protyle, this.config);
     }
 
     private hasEnabledAction() {

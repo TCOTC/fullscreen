@@ -1,5 +1,6 @@
 {
   "buttonTitle": "Toggle fullscreen",
+  "toggleCurrentEditorFullscreen": "Toggle fullscreen for the current editor",
   "editorFullscreen": "Editor fullscreen",
   "editorFullscreenDesc": "Make the current document editor fill the window, same as SiYuan's native editor fullscreen",
   "windowFullscreen": "Window fullscreen",
