@@ -48,8 +48,8 @@ importers:
         specifier: ^17.0.0
         version: 17.0.0(sass@1.102.0)(webpack@5.109.2)
       siyuan:
-        specifier: github:siyuan-note/petal#69afa6e0da4698de5aadafa6418f4ced1737574a
-        version: https://codeload.github.com/siyuan-note/petal/tar.gz/69afa6e0da4698de5aadafa6418f4ced1737574a
+        specifier: github:siyuan-note/petal#b1eb2af2ca730fddb42685b63da0b931f3986c07
+        version: git+https://github.com/siyuan-note/petal.git#b1eb2af2ca730fddb42685b63da0b931f3986c07
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -1306,8 +1306,8 @@ packages:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
 
-  siyuan@https://codeload.github.com/siyuan-note/petal/tar.gz/69afa6e0da4698de5aadafa6418f4ced1737574a:
-    resolution: {gitHosted: true, integrity: sha512-bIyoDJf8EU+67uin6rEOu1mf8AD9sXNDJVse3TxnNAc6kFRUL6WVYZG96ci95ECgUjANBr8E18NFneR8XpeUig==, tarball: https://codeload.github.com/siyuan-note/petal/tar.gz/69afa6e0da4698de5aadafa6418f4ced1737574a}
+  siyuan@git+https://github.com/siyuan-note/petal.git#b1eb2af2ca730fddb42685b63da0b931f3986c07:
+    resolution: {commit: b1eb2af2ca730fddb42685b63da0b931f3986c07, repo: https://github.com/siyuan-note/petal.git, type: git}
     version: 1.2.5
 
   source-map-js@1.2.1:
@@ -2533,7 +2533,7 @@ snapshots:
 
   shebang-regex@3.0.0: {}
 
-  siyuan@https://codeload.github.com/siyuan-note/petal/tar.gz/69afa6e0da4698de5aadafa6418f4ced1737574a:
+  siyuan@git+https://github.com/siyuan-note/petal.git#b1eb2af2ca730fddb42685b63da0b931f3986c07:
     dependencies:
       '@dop251/types-goja_nodejs-buffer': 0.0.0-20260212111938-1f56ff5bcf14
       '@dop251/types-goja_nodejs-global': 0.0.0-20260212111938-1f56ff5bcf14

@@ -1,10 +1,4 @@
-import {
-    type IProtyle,
-} from "siyuan";
-import {
-    isEditorFullscreen,
-    setEditorFullscreen,
-} from "./siyuanEditorFullscreen";
+import {type IProtyle} from "siyuan";
 
 export interface FullscreenConfig {
     editorFullscreen: boolean;
@@ -83,10 +77,6 @@ const isConfiguredFullscreen = (editorIsFS: boolean, config: FullscreenConfig): 
     return (!config.editorFullscreen || editorIsFS) && (!config.windowFullscreen || isWindowFullscreen());
 };
 
-const isCombinedFullscreen = (protyle: IProtyle, config: FullscreenConfig): boolean => {
-    return isConfiguredFullscreen(isEditorFullscreen(protyle), config);
-};
-
 /**
  * 按当前真实状态进入或退出。不缓存开关：用户可能已用原生快捷键、系统全屏等改过状态。
  * 已启用项只要有一个未全屏则全部进入全屏，都已全屏则全部退出。
@@ -95,9 +85,10 @@ export const toggleConfiguredFullscreen = (protyle: IProtyle, config: Fullscreen
     if (!config.editorFullscreen && !config.windowFullscreen) {
         return;
     }
-    const enter = !isCombinedFullscreen(protyle, config);
+    const editor = protyle.getInstance();
+    const enter = !isConfiguredFullscreen(editor.isFullscreen(), config);
     if (config.editorFullscreen) {
-        setEditorFullscreen(protyle, enter);
+        editor.setFullscreen(enter);
     }
     if (config.windowFullscreen) {
         setWindowFullscreen(enter);

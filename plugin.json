@@ -2,8 +2,8 @@
   "name": "fullscreen",
   "author": "Jeffrey Chen",
   "url": "https://github.com/TCOTC/fullscreen",
-  "version": "1.0.0",
-  "minAppVersion": "3.8.2-alpha.2",
+  "version": "1.0.1",
+  "minAppVersion": "3.8.2-alpha.3",
   "backends": [
     "all"
   ],
