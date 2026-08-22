@@ -25,5 +25,5 @@
     "default": "README.md",
     "zh-CN": "README.zh-CN.md"
   },
-  "funding": { "custom": ["https://mytemos.com/"] }
+  "funding": {"custom": ["https://mytemos.com/"]}
 }
